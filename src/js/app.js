@@ -37,8 +37,6 @@ const inputData = [
 document.addEventListener('DOMContentLoaded', () => {
   const data = new Data(inputData);
   
-
-
   const table = new Table(data.data);
   table.createTable();
 

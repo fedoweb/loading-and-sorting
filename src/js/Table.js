@@ -71,9 +71,8 @@ export default class Table {
   sortTable(sortValue) {
     const tbody = document.querySelector('tbody');
     const rows = Array.from(tbody.querySelectorAll('tr'));
-    //console.log(tbody, rows);
+
     rows.sort((item1, item2) => {
-      //console.log(item1.getAttribute(`data-${sortValue}`));
      
       let value1 = item1.getAttribute(`data-${sortValue}`);
       let value2 = item2.getAttribute(`data-${sortValue}`);
@@ -104,7 +103,5 @@ export default class Table {
         element.textContent += '↓';
       }
     });
-
-
   }
 }

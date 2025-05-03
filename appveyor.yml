@@ -1,0 +1,19 @@
+version: 1.0.{build}
+image: Ubuntu
+environment:
+  nodejs_version: "18"
+install:
+  - nvm install $nodejs_version
+  - npm install
+build_script:
+  - npm run build
+artifacts:
+  - path: dist
+    name: build
+deploy:
+  provider: GitHub
+  artifact: build
+  draft: false
+  prerelease: false
+  on:
+    branch: main
