@@ -19,5 +19,5 @@ build_script:
 on_success:
   - git config --global user.email "appveyor@example.com"
   - git config --global user.name "Appveyor CI"
-  - git remote set-url origin https://$GITHUB_TOKEN@github.com/fedoweb/whack-and-goblin.git
-  - npx gh-pages -d dist -r https://$GITHUB_TOKEN@github.com/fedoweb/whack-and-goblin.git
+  - git remote set-url origin https://$GITHUB_TOKEN@github.com/fedoweb/loading-and-sorting.git
+  - npx gh-pages -d dist -r https://$GITHUB_TOKEN@github.com/fedoweb/loading-and-sorting.git
