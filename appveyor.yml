@@ -2,7 +2,7 @@ version: 1.0.{build}
 image: Ubuntu2004
 environment:
   nodejs_version: "16"
-  GITHUB_TOKEN:
+  GITHUB_AUTH_TOKEN:
     secure: 2YjVzBsSXLSSFG4rX5qAPqRr2vbfr1EcYFeIwAdV6hZyCVFcoV2PNG3R/BbdeJf7
 install:
   - nvm install $nodejs_version
@@ -14,7 +14,10 @@ artifacts:
     name: build
 deploy:
   provider: GitHub
-  artifact: build
+  artifact: dist
+  auth_token: $(GITHUB_AUTH_TOKEN)
+  tag: $(APPVEYOR_BUILD_VERSION)
+  description: "Release $(APPVEYOR_BUILD_VERSION)"
   draft: false
   prerelease: false
   on:
