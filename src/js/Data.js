@@ -11,7 +11,7 @@ export default class Data {
 
   async loadData() {
     try {
-      const response = await fetch('/data.json');
+      const response = await fetch('data.json');
       return await response.json();
     } catch (error) {
       console.log(error);
