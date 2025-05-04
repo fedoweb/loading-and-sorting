@@ -68,7 +68,7 @@ export default class Table {
     return Object.keys(this.data[0]);
   }
 
-  sortTable(sortValue) {
+  sortTable(sortValue, sortType) {
     const tbody = document.querySelector('tbody');
     const rows = Array.from(tbody.querySelectorAll('tr'));
 
@@ -84,7 +84,10 @@ export default class Table {
         value1 = parseFloat(value1);
         value2 = parseFloat(value2);
       }
-      return ((value1 < value2) ? -1 : ((value1 > value2) ? 1 : 0));
+
+      if (sortType === 'abc') return ((value1 < value2) ? -1 : ((value1 > value2) ? 1 : 0));
+
+      if (sortType === 'cba') return ((value1 > value2) ? -1 : ((value1 < value2) ? 1 : 0));
     });
 
     tbody.innerHTML = '';
@@ -92,15 +95,17 @@ export default class Table {
     rows.forEach(row => tbody.appendChild(row));
   }
 
-  addArrow(key) {
+  addArrow(key, sortType) {
     const thead = document.querySelector('thead');
     const headers = Array.from(thead.querySelectorAll('th'));
 
     headers.forEach(element => {
-      element.innerHTML = element.innerHTML.replace(/↓/, '');
+      element.innerHTML = element.innerHTML.replace(/↑|↓/, '');
 
-      if (element.textContent === key) {
+      if (element.textContent === key && sortType === 'abc') {
         element.textContent += '↓';
+      } else if (element.textContent === key && sortType === 'cba') {
+        element.textContent += '↑';
       }
     });
   }
