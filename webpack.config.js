@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -42,5 +43,19 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
         }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'public',
+                    to: '',
+                    globOptions: {
+                        ignore: [
+                            '**/.DS_Store', 
+                            '**/Thumbs.db'  
+                        ]
+                    }
+                }
+            ]    
+        })
     ],
 };
