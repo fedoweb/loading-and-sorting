@@ -4,14 +4,17 @@ export default class Table {
     this.table = null;
   }
 
+  init() {
+    this.createTable();
+    this.createHeaders(this.getHeaders());
+    this.createBody(this.data);
+  }
+
   createTable() {
     const container = document.querySelector('.table_container');
 
     this.table = document.createElement('table');
     this.table.classList.add('table');
-
-    this.createHeaders(this.getHeaders());
-    this.createBody(this.data);
 
     container.appendChild(this.table);
   }
@@ -30,7 +33,6 @@ export default class Table {
 
     this.table.appendChild(thead);
     thead.appendChild(headerRow);
-    
   }
 
   createBody(data) {

@@ -1,17 +1,21 @@
 export default class Data {
-  constructor(data) {
-    this.data = data;
+  constructor() {
+    this.data = null;
+    this.generator = null;
+  }
+
+  async init() {
+    this.data = await this.loadData();
     this.generator = this.keyGenerator();
   }
 
-  sort(sortValue) {
-    const sortData = [...this.data];
-    return sortData.sort((item1, item2) => {
-      const value1 = item1[sortValue];
-      const value2 = item2[sortValue];
-
-      return ((value1 < value2) ? -1 : ((value1 > value2) ? 1 : 0));
-    });
+  async loadData() {
+    try {
+      const response = await fetch('/data.json');
+      return await response.json();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   getKeys() {
